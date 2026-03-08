@@ -1,10 +1,10 @@
-import { getWasm, loadNanoflann } from './wasm.js'
-import {
+const { getWasm, loadNanoflann } = require('./wasm.js')
+const {
   normalizeX, normalizeY,
   encodeBundle, decodeBundle,
   register,
   DisposedError, NotFittedError
-} from '@wlearn/core'
+} = require('@wlearn/core')
 
 // FinalizationRegistry safety net -- warns if dispose() was never called
 const leakRegistry = typeof FinalizationRegistry !== 'undefined'
@@ -18,7 +18,7 @@ const leakRegistry = typeof FinalizationRegistry !== 'undefined'
 
 // --- Metric constants ---
 
-export const Metric = { l2: 0, l1: 1 }
+const Metric = { l2: 0, l1: 1 }
 
 function resolveMetric(m) {
   if (typeof m === 'number') return m
@@ -43,7 +43,7 @@ const LOAD_SENTINEL = Symbol('load')
 
 // --- KNNModel ---
 
-export class KNNModel {
+class KNNModel {
   #handle = null
   #freed = false
   #ptrRef = null
@@ -139,12 +139,6 @@ export class KNNModel {
     wasm._free(yPtr)
 
     if (!modelPtr) {
-      // X was NOT freed if build failed before taking ownership
-      // but wl_nf_build takes ownership even on error path after the copy
-      // Actually, on error after X_owned is set, free_index frees it.
-      // On error before X_owned is set (validation), we need to free xPtr.
-      // The C code takes ownership of X_ptr when take_ownership=1,
-      // so it will free it in the error path via free_index.
       throw new Error(`Training failed: ${getLastError()}`)
     }
 
@@ -572,3 +566,5 @@ export class KNNModel {
 
 register('wlearn.nanoflann.classifier@1', (m, t, b) => KNNModel._fromBundle(m, t, b))
 register('wlearn.nanoflann.regressor@1', (m, t, b) => KNNModel._fromBundle(m, t, b))
+
+module.exports = { KNNModel, Metric }

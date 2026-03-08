@@ -2,7 +2,7 @@
 
 nanoflann v1.6.3 compiled to WebAssembly. k-nearest neighbor classification and regression via KD-trees in browsers and Node.js.
 
-Based on [nanoflann v1.6.3](https://github.com/jlblancoc/nanoflann) (BSD-2-Clause). Zero dependencies. ESM.
+Based on [nanoflann v1.6.3](https://github.com/jlblancoc/nanoflann) (BSD-2-Clause). Zero dependencies. CommonJS.
 
 ## Install
 
@@ -13,7 +13,7 @@ npm install @wlearn/nanoflann
 ## Quick start
 
 ```js
-import { KNNModel } from '@wlearn/nanoflann'
+const { KNNModel } = require('@wlearn/nanoflann')
 
 const model = await KNNModel.create({
   k: 5,

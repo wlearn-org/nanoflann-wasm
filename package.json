@@ -2,10 +2,13 @@
   "name": "@wlearn/nanoflann",
   "version": "0.1.0",
   "description": "nanoflann KD-tree compiled to WebAssembly -- k-nearest neighbors in browsers and Node.js",
-  "type": "module",
+  "type": "commonjs",
   "main": "src/index.js",
   "exports": {
-    ".": "./src/index.js"
+    ".": {
+      "require": "./src/index.js",
+      "default": "./src/index.js"
+    }
   },
   "files": [
     "src/",

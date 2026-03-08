@@ -1,9 +1,3 @@
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
 let passed = 0
 let failed = 0
 
@@ -67,12 +61,14 @@ function makeRegressionData(rng, nSamples, nFeatures) {
   return { X, y }
 }
 
+async function main() {
+
 // ============================================================
 // WASM loading
 // ============================================================
 console.log('\n=== WASM Loading ===')
 
-const { loadNanoflann } = await import('../src/wasm.js')
+const { loadNanoflann } = require('../src/wasm.js')
 const wasm = await loadNanoflann()
 
 await test('WASM module loads', async () => {
@@ -90,7 +86,7 @@ await test('get_last_error returns string', async () => {
 // ============================================================
 console.log('\n=== KNNModel ===')
 
-const { KNNModel, Metric } = await import('../src/model.js')
+const { KNNModel, Metric } = require('../src/model.js')
 
 await test('create() returns model', async () => {
   const model = await KNNModel.create({ k: 3 })
@@ -421,7 +417,7 @@ await test('Regression save/load round-trip', async () => {
 })
 
 await test('Bundle blob has NF01 header', async () => {
-  const { decodeBundle } = await import('@wlearn/core')
+  const { decodeBundle } = require('@wlearn/core')
 
   const rng = makeLCG(802)
   const { X, y } = makeClassificationData(rng, 20, 2)
@@ -455,7 +451,7 @@ await test('Bundle blob has NF01 header', async () => {
 })
 
 await test('Regressor bundle blob size', async () => {
-  const { decodeBundle } = await import('@wlearn/core')
+  const { decodeBundle } = require('@wlearn/core')
 
   const rng = makeLCG(803)
   const { X, y } = makeRegressionData(rng, 20, 2)
@@ -551,3 +547,7 @@ await test('defaultSearchSpace returns valid IR', async () => {
 // ============================================================
 console.log(`\n${passed + failed} tests: ${passed} passed, ${failed} failed\n`)
 if (failed > 0) process.exit(1)
+
+} // end main
+
+main()
