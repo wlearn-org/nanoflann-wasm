@@ -9,7 +9,7 @@ async function loadNanoflann(options = {}) {
 
   loading = (async () => {
     // SINGLE_FILE=1: .wasm is embedded in the .js file, no locateFile needed
-    const createNanoflann = require('../wasm/nanoflann.cjs')
+    const createNanoflann = require('../wasm/nanoflann.js')
     wasmModule = await createNanoflann(options)
     return wasmModule
   })()

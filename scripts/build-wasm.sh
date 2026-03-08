@@ -49,7 +49,7 @@ EXPORTED_RUNTIME_METHODS='["ccall","cwrap","getValue","setValue","HEAPF64","HEAP
 em++ \
   "${PROJECT_DIR}/csrc/wl_api.cpp" \
   -I "${UPSTREAM_DIR}/include" \
-  -o "${OUTPUT_DIR}/nanoflann.cjs" \
+  -o "${OUTPUT_DIR}/nanoflann.js" \
   -std=c++11 \
   -s MODULARIZE=1 \
   -s SINGLE_FILE=1 \
@@ -75,5 +75,5 @@ wasm_embedded: true
 EOF
 
 echo "=== Build complete ==="
-ls -lh "${OUTPUT_DIR}/nanoflann.cjs"
+ls -lh "${OUTPUT_DIR}/nanoflann.js"
 cat "${OUTPUT_DIR}/BUILD_INFO"
