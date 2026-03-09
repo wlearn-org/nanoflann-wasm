@@ -41,5 +41,9 @@
     "wlearn"
   ],
   "author": "Anton Zemlyansky",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wlearn-org/nanoflann-wasm.git"
+  },
   "license": "BSD-2-Clause"
 }
