@@ -2,7 +2,7 @@
 
 nanoflann v1.6.3 compiled to WebAssembly. k-nearest neighbor classification and regression via KD-trees in browsers and Node.js.
 
-Based on [nanoflann v1.6.3](https://github.com/jlblancoc/nanoflann) (BSD-2-Clause). Zero dependencies. CommonJS.
+Part of [wlearn](https://wlearn.org) ([GitHub](https://github.com/wlearn-org), [all packages](https://github.com/wlearn-org/wlearn#repository-structure)). Based on [nanoflann v1.6.3](https://github.com/jlblancoc/nanoflann) (BSD-2-Clause). Zero dependencies. CommonJS.
 
 ## Install
 
